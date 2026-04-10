@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Heróis - Jogo</title>
+</head>
+<body>
+
+  <h1>Simulação de Ataque de Heróis</h1>
+  <button onclick="executarAtaques()">Atacar</button>
+
+  <pre id="saida"></pre>
+
+  <script>
+    class Heroi {
+      constructor(nome, idade, tipo) {
+        this.nome = nome;
+        this.idade = idade;
+        this.tipo = tipo.toLowerCase();
+      }
+
+      atacar() {
+        const ataques = {
+          mago: "magia",
+          guerreiro: "espada",
+          monge: "artes marciais",
+          ninja: "shuriken"
+        };
+
+        let ataque = ataques[this.tipo] || "um ataque desconhecido";
+        return `o ${this.tipo} atacou usando ${ataque}`;
+      }
+    }
+
+    function executarAtaques() {
+      const saida = document.getElementById("saida");
+
+      // Criando heróis
+      let herois = [
+        new Heroi("Arthas", 30, "guerreiro"),
+        new Heroi("Merlin", 150, "mago"),
+        new Heroi("Lee", 40, "monge"),
+        new Heroi("Hanzo", 35, "ninja")
+      ];
+
+      // Laço de repetição
+      let resultado = "";
+      for (let i = 0; i < herois.length; i++) {
+        resultado += herois[i].atacar() + "\n";
+      }
+
+      saida.textContent = resultado;
+    }
+  </script>
+
+</body>
+</html>
